@@ -1,0 +1,36 @@
+.link-visualizacao-img {
+    width: 40px;
+    padding: 5px;
+}
+
+.grid {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    display: inline-grid;
+    min-width: 30%;
+    text-align: left;
+    padding: 2%;
+}
+
+.grid .grid_title {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 50%;
+}
+
+.grid .grid_competencia {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.grid .grid_button {
+    padding-top: 20%;
+}
+
+#visualizacao_grid {
+    text-align: center;
+}
+
+.fundoGrafico{
+    background-color: white;
+}

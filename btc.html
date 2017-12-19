@@ -1,0 +1,116 @@
+<meta charset="utf-8">
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+<link href="css/unimed.css" type="text/css" rel="stylesheet" />
+<link href="btc.css" type="text/css" rel="stylesheet" />
+<script src="lib/angular.min.js"></script>
+<script src="lib/dirPagination.js"></script>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="lib/bootstrap.js"></script>
+<script src="btc.js"></script>
+<script src="lib/Chart.min.js"></script>
+<script src="lib/Chart.bundle.min.js"></script>
+<script src="lib/jspdf.min.js"></script>
+<script src="http://convertcsv.com/strsup.js"></script>
+<script src="http://convertcsv.com/localread.js"></script>
+<script src="http://convertcsv.com/csvparse.js"></script>
+<script src="http://convertcsv.com/csvsup.js"></script>
+<script src="http://convertjson.com/js/underscore-min.js"></script>
+
+<div ng-app="app.BTC">
+    <div ng-controller="BTCController">
+        <div class="container padding-container">
+            <div class="row tituloBase tituloPagina fundoCinza">
+                BTC
+            </div>
+        </div>
+        <div class='modal fade' id="modalGenerico" class="modalCompartilhaGenerico"></div>
+
+        <form ng-submit="plotar()" class="container padding-container">
+            <h4 class="center">Dados</h4>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>total Dias Investimento</label>
+                        <input ng-model="dadosCalculo.totalDiasInvestimento" required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Balanço BTC inicial</label>
+                        <input ng-model="dadosCalculo.BTCBalanco" required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Hashrate inicial</label>
+                        <input ng-model="dadosCalculo.hashrate"  required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Preço do contrato em dólar</label>
+                        <input ng-model="dadosCalculo.precoContratoDolar"  required type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Cotação atual bitcoin em dólar</label>
+                        <input ng-model="dadosCalculo.cotacaoAtualBitcoinDolar"  required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Cotação do dólar</label>
+                        <input ng-model="dadosCalculo.cotacaoDolar"  required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Rentabilidade THz/Dia</label>
+                        <input ng-model="dadosCalculo.rentabilidadeTHzDia"  required type="text" class="form-control">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label>Taxa de manutenção dólar</label>
+                        <input ng-model="dadosCalculo.taxaManutencaoDollar"  required type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <label></label>
+                        <input type="submit" value="Plotar gráficos" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="container padding-container">
+            <h4 class="center">Valor saque mensal (líquido) ao longo do tempo</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="chart-container fundoGrafico">
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container padding-container">
+            <h4 class="center">Valor rendimento diário (líquido) ao longo do tempo</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="chart-container fundoGrafico">
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container padding-container">
+            <h4 class="center">Balanço ao longo do tempo</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="chart-container fundoGrafico">
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container padding-container">
+            <h4 class="center">THZ ao longo do tempo</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="chart-container fundoGrafico">
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="divHtml" style="display:none; visibility: hidden; height: 5px"></div>
+    </div>
+</div>
+</div>
